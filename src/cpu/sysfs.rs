@@ -3,6 +3,44 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::{Path, PathBuf};
 
+/// Raw /proc/stat CPU jiffies for utilization calculation.
+#[derive(Debug, Clone, Default)]
+pub struct CpuJiffies {
+    pub user: u64,
+    pub nice: u64,
+    pub system: u64,
+    pub idle: u64,
+    pub iowait: u64,
+    pub irq: u64,
+    pub softirq: u64,
+    pub steal: u64,
+}
+
+impl CpuJiffies {
+    pub fn total(&self) -> u64 {
+        self.user + self.nice + self.system + self.idle + self.iowait + self.irq + self.softirq + self.steal
+    }
+    pub fn busy(&self) -> u64 {
+        self.total() - self.idle - self.iowait
+    }
+}
+
+pub fn read_cpu_jiffies() -> CpuJiffies {
+    if let Ok(stat) = fs::read_to_string("/proc/stat") {
+        if let Some(line) = stat.lines().next() {
+            let parts: Vec<u64> = line.split_whitespace().skip(1)
+                .filter_map(|s| s.parse().ok()).collect();
+            if parts.len() >= 8 {
+                return CpuJiffies {
+                    user: parts[0], nice: parts[1], system: parts[2], idle: parts[3],
+                    iowait: parts[4], irq: parts[5], softirq: parts[6], steal: parts[7],
+                };
+            }
+        }
+    }
+    CpuJiffies::default()
+}
+
 /// Detected CPU driver type.
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub enum Driver {

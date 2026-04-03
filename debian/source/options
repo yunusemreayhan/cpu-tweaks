@@ -1,0 +1,5 @@
+extend-diff-ignore = "^(target/|\.cargo/|debian/\.cargo/)"
+tar-ignore = "target"
+tar-ignore = ".cargo"
+tar-ignore = "debian/.cargo"
+tar-ignore = ".git"

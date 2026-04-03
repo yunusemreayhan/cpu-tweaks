@@ -22,14 +22,28 @@ pub fn apply_theme(ctx: &egui::Context) {
     visuals.override_text_color = Some(TEXT_PRIMARY);
     visuals.selection.bg_fill = ACCENT_DIM;
     visuals.selection.stroke = Stroke::new(1.0, ACCENT);
+
+    // Widget text (fg_stroke) must be light on our dark backgrounds
     visuals.widgets.noninteractive.bg_fill = BG_CARD;
     visuals.widgets.noninteractive.corner_radius = CornerRadius::same(6);
+    visuals.widgets.noninteractive.fg_stroke = Stroke::new(1.0, TEXT_PRIMARY);
+
     visuals.widgets.inactive.bg_fill = Color32::from_rgb(45, 45, 62);
     visuals.widgets.inactive.corner_radius = CornerRadius::same(6);
+    visuals.widgets.inactive.fg_stroke = Stroke::new(1.0, TEXT_PRIMARY);
+
     visuals.widgets.hovered.bg_fill = Color32::from_rgb(55, 55, 75);
     visuals.widgets.hovered.corner_radius = CornerRadius::same(6);
+    visuals.widgets.hovered.fg_stroke = Stroke::new(1.0, Color32::WHITE);
+
     visuals.widgets.active.bg_fill = ACCENT_DIM;
     visuals.widgets.active.corner_radius = CornerRadius::same(6);
+    visuals.widgets.active.fg_stroke = Stroke::new(1.0, Color32::WHITE);
+
+    visuals.widgets.open.bg_fill = Color32::from_rgb(50, 50, 68);
+    visuals.widgets.open.corner_radius = CornerRadius::same(6);
+    visuals.widgets.open.fg_stroke = Stroke::new(1.0, Color32::WHITE);
+
     visuals.window_corner_radius = CornerRadius::same(10);
     ctx.set_visuals(visuals);
 

@@ -1,0 +1,18 @@
+Source: cpu-tweaks
+Section: utils
+Priority: optional
+Maintainer: Yunus Ayhan <yunus.ayhan@ericsson.com>
+Build-Depends: debhelper-compat (= 13), cargo, rustc, libgtk-3-dev, libglib2.0-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/yunusemreayhan/cpu-tweaks
+Vcs-Git: https://github.com/yunusemreayhan/cpu-tweaks.git
+Vcs-Browser: https://github.com/yunusemreayhan/cpu-tweaks
+
+Package: cpu-tweaks
+Architecture: amd64
+Depends: ${misc:Depends}, ${shlibs:Depends}, libgtk-3-0, libglib2.0-0
+Description: CPU frequency and power management GUI for Linux
+ Native Linux GUI for CPU frequency, governor, turbo boost, and energy
+ performance tuning. Supports Intel P-State, AMD P-State, and acpi-cpufreq
+ drivers. Features live per-core frequency monitoring, drift detection,
+ and privilege escalation via pkexec.
