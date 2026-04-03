@@ -64,6 +64,10 @@ pub fn draw(ctx: &egui::Context, app: &mut CpuTweaksApp) {
                     app.status_msg = "Refreshed from system.".into();
                     app.status_is_err = false;
                 }
+                if ui.add(egui::Hyperlink::from_label_and_url(
+                    egui::RichText::new("GitHub").size(12.0).color(TEXT_DIM),
+                    "https://github.com/yunusemreayhan/cpu-tweaks",
+                )).changed() {};
             });
         });
     });

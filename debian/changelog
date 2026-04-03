@@ -1,4 +1,4 @@
-cpu-tweaks (0.1.0) noble; urgency=low
+cpu-tweaks (0.2.0) noble; urgency=low
 
   * Initial PPA release.
   * Auto-detects Intel P-State, AMD P-State, acpi-cpufreq drivers.
