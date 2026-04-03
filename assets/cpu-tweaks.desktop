@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=CPU Tweaks
+Comment=CPU frequency and power management tool
+Exec=/usr/bin/cpu-tweaks
+Icon=cpu-tweaks
+Terminal=false
+Categories=System;Settings;HardwareSettings;
+Keywords=cpu;frequency;governor;power;turbo;boost;pstate;
+StartupNotify=true
+StartupWMClass=cpu-tweaks

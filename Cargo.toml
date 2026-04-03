@@ -1,0 +1,38 @@
+[package]
+name = "cpu-tweaks"
+version = "0.1.0"
+edition = "2021"
+authors = ["Yunus Emre Ayhan <ehnxnsm>"]
+description = "CPU frequency and power management GUI for Linux"
+license = "MIT"
+homepage = "https://github.com/ehnxnsm/cpu-tweaks"
+
+[dependencies]
+eframe = "0.31"
+egui = "0.31"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+log = "0.4"
+env_logger = "0.11"
+gtk = "0.18"
+resvg = "0.45"
+
+[package.metadata.deb]
+maintainer = "Yunus Emre Ayhan <ehnxnsm>"
+copyright = "2026, Yunus Emre Ayhan"
+depends = "$auto, libgtk-3-0, libglib2.0-0, pkexec | policykit-1 | polkitd"
+section = "utils"
+priority = "optional"
+extended-description = """CPU frequency and power management tool for Linux.
+Supports Intel P-State, AMD P-State, and generic cpufreq drivers.
+Provides a native GUI for adjusting governors, frequency limits,
+energy performance preferences, and turbo/boost settings.
+Uses pkexec for privilege escalation."""
+assets = [
+    ["target/release/cpu-tweaks", "usr/bin/", "755"],
+    ["assets/cpu-tweaks.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+    ["assets/cpu-tweaks.desktop", "usr/share/applications/", "644"],
+    ["assets/com.github.ehnxnsm.cpu-tweaks.policy", "usr/share/polkit-1/actions/", "644"],
+    ["README.md", "usr/share/doc/cpu-tweaks/", "644"],
+]
